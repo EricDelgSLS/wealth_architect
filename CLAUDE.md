@@ -272,6 +272,14 @@ See `PROMPT_ARCHITECTURE.txt` for full specifications and JSON schemas.
 - Decision: Monitor API costs before scaling to public
 - User will familiarize with Google AI Studio quota/billing before deploying
 
+**February 15, 2026 - Rebrand to "The Portfolio Pilot"**:
+- ✅ **Renamed app from "Wealth Architect" to "The Portfolio Pilot"**
+- Updated all user-facing text in WA_app.py (6 changes)
+- Updated AI prompt context in WA_backend.py (2 changes)
+- File names remain unchanged (WA_app.py, WA_backend.py) for simplicity
+- New branding: Airplane icon (✈️) + tagline "Your AI co-pilot for building a smarter portfolio"
+- Ready to commit and push to GitHub
+
 **Next Session**: Deploy to Streamlit Cloud.
 
 ---

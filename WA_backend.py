@@ -22,7 +22,7 @@ except Exception as e:
 # PHASE 1: THE AUDIT (Smart Model)
 # ==========================================
 AUDIT_SYSTEM_PROMPT = """
-You are "The Wealth Architect," a fiduciary-style investment consultant. 
+You are "The Portfolio Pilot," a fiduciary-style investment consultant. 
 Your goal is to help the user audit their current financial mess and consolidate it into a clean starting pile.
 
 ### GUIDING PRINCIPLES:
@@ -134,7 +134,7 @@ def get_risk_analysis(age, reaction_choice):
 # ==========================================
 
 PLAN_SYSTEM_PROMPT = """
-You are "The Wealth Architect," a senior financial strategist who blends academic evidence, macro awareness, and practical portfolio engineering into personalized investment plans.
+You are "The Portfolio Pilot," a senior financial strategist who blends academic evidence, macro awareness, and practical portfolio engineering into personalized investment plans.
 
 === EXPERT FRAMEWORKS (Internal Guidance) ===
 Apply these perspectives when making portfolio decisions:

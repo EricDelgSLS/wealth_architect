@@ -8,8 +8,8 @@ import pandas as pd
 
 # 1. Page Configuration
 st.set_page_config(
-    page_title="Wealth Architect",
-    page_icon="🏛️",
+    page_title="The Portfolio Pilot",
+    page_icon="✈️",
     layout="centered"
 )
 
@@ -61,8 +61,8 @@ def render_progress():
         st.markdown("---")
 
 # --- HEADER ---
-st.title("The Wealth Architect")
-st.markdown("*From financial chaos to clarity.*")
+st.title("✈️ The Portfolio Pilot")
+st.markdown("*Your AI co-pilot for building a smarter portfolio.*")
 
 # --- STEP RENDERING ---
 step = st.session_state['current_step']
@@ -206,7 +206,7 @@ elif step == 2:
     # Show warning if they have debt (advisory, not blocker)
     if st.session_state['user_data']['has_high_interest_debt']:
         st.warning("""
-        **Wealth Tip:** It's highly recommended that you pay off high-interest debt first.
+        **Financial Tip:** It's highly recommended that you pay off high-interest debt first.
         Any gains made in the stock market are most likely not going to beat the 20-30% interest
         loss on credit card debt. We'll proceed assuming this is being taken care of separately.
         """)
@@ -601,7 +601,7 @@ elif step == TOTAL_STEPS + 1:
         unsafe_allow_html=True
     )
 
-    st.header("Your Wealth Architect Report")
+    st.header("Your Portfolio Pilot Report")
 
     ud = st.session_state['user_data']
 
@@ -677,9 +677,12 @@ elif step == TOTAL_STEPS + 1:
         st.markdown("""
         Consider auditing this portfolio with another AI for a different perspective.
 
-        **Pro tip:** Use the high-performance reasoning models from OpenAI (like GPT-4o or o1) or
-        Google (Gemini 2.0) for more thoughtful, nuanced analysis. These models are better at
-        catching edge cases and providing detailed explanations.
+        **Pro tip:** Use the latest high-performance reasoning models for more thoughtful, nuanced analysis:
+        - **OpenAI GPT-5.2** (Thinking mode for complex reasoning)
+        - **Google Gemini 3 Pro** (state-of-the-art reasoning and multimodal understanding)
+        - **Anthropic Claude Opus 4.6** (excellent for detailed financial analysis)
+
+        These models excel at catching edge cases and providing detailed explanations.
 
         Just describe your situation, share the portfolio, and ask if they see any blind spots
         or have alternative suggestions.
