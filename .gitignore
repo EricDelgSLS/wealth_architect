@@ -31,3 +31,16 @@ test_*.py
 venv/
 env/
 ENV/
+
+# Documentation and session files (keep private)
+CLAUDE.md
+SESSION_MEMORY.md
+PROMPT_ARCHIVE_*.txt
+PROMPT_ARCHITECTURE.txt
+Prompt_References.md
+TEST_SCENARIOS.txt
+*test_scenario*.txt
+ChatGPT*.txt
+wealth_architect_claude_guide*.md
+Project_*.txt
+AI Investing Prompt Chain*.txt
