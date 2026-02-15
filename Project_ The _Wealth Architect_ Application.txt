@@ -1,0 +1,100 @@
+﻿Project: The "Wealth Architect" Application
+Date: December 13, 2025 Role: Product Manager & Lead Developer Goal: Transform a text-based Investment Prompt Chain into a fully interactive Web Application.
+Part 1: Product Strategy Guide (The "PM" View)
+Objective: Understand the user journey, the problem we are solving, and the "why" behind the technology.
+1. The Core Problem
+High-earning Millennials have surplus cash but lack a cohesive strategy. They suffer from:
+* Analysis Paralysis: Too many options (Crypto? ETFs? Real Estate?).
+* Asset Clutter: Money scattered across old 401ks, random Robinhood stocks, and HYSA.
+* Lack of Structure: No clear distinction between "Lump Sum" (clean up) and "Recurring" (build wealth).
+2. The Solution: "The Wealth Architect"
+An interactive web application that acts as a fiduciary-style consultant. It performs two distinct calculations:
+1. The Consolidation (Lump Sum): Audits current messy assets to create a single, clean starting pile.
+2. The Engine (Recurring): Calculates a sustainable biweekly contribution from salary surplus.
+3. The User Flow (The Experience)
+We are moving from a "Chat" experience to a "Wizard" experience.
+Phase 1: The Audit & Consolidation (Finding the Lump Sum)
+* Goal: Help the user identify money they already have that isn't working hard enough.
+* User Action:
+   * Input: "Cash in Savings"
+   * Input (Optional): "Current Random Assets" (User pastes a list: 'I have $5k in AMC, $10k in an old 401k, and $2k in Bitcoin').
+* System Logic (The Auditor):
+   * The AI analyzes these inputs.
+   * Advice: It suggests what to keep, what to sell (e.g., "Consider selling the meme stocks to fund your core portfolio"), and consolidates this into a single number: The Initial Lump Sum.
+Phase 2: The Sustainability Check (Finding the Recurring Amount)
+* Goal: Calculate a safe monthly contribution.
+* User Action: Input "Take Home Pay" and "Fixed Monthly Bills."
+* System Logic (The Calculator):
+   * Calculates Surplus = Pay - Bills.
+   * The Soft Guardrail: If they list high-interest debt, display a gentle "Wealth Tip" (e.g., "Paying off your 20% VISA card is a guaranteed 20% return. Consider doing that first."), but allow them to proceed.
+   * Output: "You have $2,000/month surplus. We recommend setting up an automated transfer of $1,000 (biweekly $500) to your brokerage."
+Phase 3: The Psychologist (Risk Assessment)
+* User Action: Slider for Age. Multiple-choice for "Market Crash Reaction."
+* System Logic: Translates "feelings" into a mathematical Risk Score (0.0 to 1.0).
+Phase 4: Dual Outputs (The Deliverable)
+The app generates two distinct plans side-by-side.
+Output A: The Lump Sum Deployment (The "Clean Up")
+* Purpose: How to invest the $50k sitting in savings right now.
+* Visual: Pie Chart & Table.
+* Columns: Ticker | Name | Allocation % | $ Amount | Why It's Here
+* Logic: Often leans slightly more conservative to prevent "Shock" from dumping a large sum into the market at once.
+Output B: The Biweekly Engine (The "Build Up")
+* Purpose: The automated buy order for the $500 paycheck deduction.
+* Visual: Table.
+* Columns: Ticker | Allocation % | $ Buy Amount
+* Logic: Aggressive Dollar-Cost Averaging (DCA).
+Part 2: Technical Execution Guide (The "Dev" View)
+Objective: A step-by-step manual to building the application using Python and Streamlit.
+1. The Tech Stack
+* Language: Python 3.10+
+* Framework: Streamlit (Web UI).
+* AI Brain: Google Gemini API (via google-generativeai).
+* Data Viz: Plotly (for interactive Pie Charts).
+2. Architecture: "Separation of Concerns"
+File A: backend.py (The Brain)
+This file handles the logic. We will add a toggle for the model to easily switch between versions.
+# Pseudo-code preview
+MODEL_NAME = "gemini-2.5-flash" # Change to "gemini-3-flash" when released
+
+
+def audit_current_assets(user_text):
+    # Sends prompt to Gemini to analyze user's "random stocks"
+    # Returns advice on consolidation.
+
+
+def generate_dual_strategy(risk_profile, lump_sum, monthly_surplus):
+    # Returns JSON with TWO lists: 'lump_sum_allocation' and 'recurring_allocation'
+File B: app.py (The Face)
+* Tab Interface: Use st.tabs(["Step 1: Audit", "Step 2: Risk", "Step 3: The Plan"]) to manage the flow cleanly.
+* Input Area: Use st.text_area for the "Current Assets" input so users can paste messy text.
+* Visualization: Use st.plotly_chart to show the portfolio breakdown.
+3. Development Workflow (The 10-Day Sprint)
+* Day 1: Environment Setup & "Hello World".
+* Day 2: Build backend.py -> audit_current_assets function. (Test if Gemini can handle messy text).
+* Day 3: Build backend.py -> generate_dual_strategy function. (Ensure JSON output is perfect).
+* Day 4-6: Build app.py UI. Connect inputs to the backend.
+* Day 7: Implement the Dual Output tables. Make sure the math works (Lump Sum vs. Monthly).
+* Day 8: The "Educational Layer." Add expanders (st.expander) for "Why VOO?" details.
+* Day 9: Polish. Add the PDF download button.
+* Day 10: Deploy to Streamlit Cloud.
+Part 3: Gemini Model Landscape (Dec 2025 Status)
+Objective: Choosing the right "Brain" for your application.
+1. Gemini 2.5 Flash (The Default)
+* Status: Available Now.
+* Role: The engine for this app.
+* Why: It is fast enough to make the "Audit" feel instant. It is cheap enough that you won't pay anything during testing.
+* Cost: ~$0.10 / 1M tokens (Free tier available).
+2. Gemini 3 Pro (The Auditor)
+* Status: Available (Preview).
+* Role: Optional "Deep Audit."
+* Why: If a user pastes a very complex list of assets (e.g., "I have 500 shares of TSLA bought at $200, options on AMD..."), Gemini 3 Pro's reasoning capabilities are superior for giving nuanced advice on how to unwind that position.
+* Cost: ~$2.00 / 1M tokens (Significantly higher).
+3. Gemini 3 Flash (The Future)
+* Status: NOT RELEASED YET.
+* Strategy: We build with 2.5 Flash. When 3.0 Flash drops, you simply change one line of code in backend.py: MODEL_NAME = "gemini-3.0-flash"
+Final Checklist Before You Start Coding
+1. VS Code Installed? Yes.
+2. Gemini Code Assist Extension? Installed.
+3. Google AI Studio API Key? Generated.
+4. Python Installed? Verified.
+You are ready to build.

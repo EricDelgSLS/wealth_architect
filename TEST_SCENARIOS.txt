@@ -1,0 +1,385 @@
+WEALTH ARCHITECT - TEST SCENARIOS
+==================================
+Date: January 17, 2026
+Purpose: Comprehensive test cases to validate portfolio diversity and prompt quality
+
+These scenarios test different combinations of age, risk tolerance, convictions, and financial situations
+to ensure the AI produces meaningfully different portfolios.
+
+==================================
+SCENARIO 1: YOUNG TECH WORKER (AGGRESSIVE)
+==================================
+**Profile:** Alex, 25, software engineer at AI startup
+
+**Step 1: Basics**
+- Age: 25
+- State: California
+
+**Step 2: Financial Foundation**
+- Emergency Fund: Yes, I have an emergency fund
+- High-Interest Debt: No high-interest debt
+
+**Step 3: Current Assets**
+Text: "I have $8,000 in a high-yield savings account at 4.5%, $2,000 in VOO from my first job, and about $500 in Bitcoin that I bought a while ago."
+
+**Step 4: The Numbers**
+- Lump Sum: $10,000
+- Biweekly: $800
+
+**Step 5: Risk Profile**
+- Reaction: D) Buy more while prices are low. This is a discount!
+
+**Step 6: Market Perspective**
+- Has Convictions: Yes
+- Text: "I work in AI/ML at my company and see firsthand how fast enterprise adoption is happening. I'm very bullish on AI infrastructure - semiconductors, cloud compute, and the software platforms that others build on. I think this is a decade+ trend."
+
+**Expected Portfolio Characteristics:**
+- 90% equities / 10% bonds (Aggressive profile)
+- Heavy US large cap exposure (VOO/VTI)
+- AI/tech tilt up to 15% (QQQ, SMH, or individual semiconductor stocks)
+- Minimal bonds due to age and risk tolerance
+- Should mention age advantage (40+ years to retirement)
+
+
+==================================
+SCENARIO 2: MID-CAREER CONSERVATIVE
+==================================
+**Profile:** Maria, 45, accountant with two kids
+
+**Step 1: Basics**
+- Age: 45
+- State: Texas
+
+**Step 2: Financial Foundation**
+- Emergency Fund: Yes, I have an emergency fund
+- High-Interest Debt: No high-interest debt
+
+**Step 3: Current Assets**
+Text: "I have $25,000 in a savings account, $15,000 in an old 401k from my previous employer, and $5,000 in a mix of random stocks (mostly Disney and Target) that my dad recommended years ago."
+
+**Step 4: The Numbers**
+- Lump Sum: $30,000
+- Biweekly: $500
+
+**Step 5: Risk Profile**
+- Reaction: A) Sell everything immediately. I can't stomach losing more.
+
+**Step 6: Market Perspective**
+- Has Convictions: No, just build me a standard diversified portfolio
+
+**Expected Portfolio Characteristics:**
+- 40% equities / 60% bonds+cash (Conservative profile)
+- Heavy bond allocation (SCHP, SGOV, BND)
+- Diversified equity split (US + International)
+- Should emphasize stability and capital preservation
+- Should mention approaching retirement (20 years out)
+
+
+==================================
+SCENARIO 3: ESG-FOCUSED MILLENNIAL
+==================================
+**Profile:** Jordan, 30, nonprofit program manager
+
+**Step 1: Basics**
+- Age: 30
+- State: Oregon
+
+**Step 2: Financial Foundation**
+- Emergency Fund: Yes, I have an emergency fund
+- High-Interest Debt: No high-interest debt
+
+**Step 3: Current Assets**
+Text: "I have $12,000 in a high-yield savings account and $3,000 in a Roth IRA invested in a target date fund."
+
+**Step 4: The Numbers**
+- Lump Sum: $12,000
+- Biweekly: $600
+
+**Step 5: Risk Profile**
+- Reaction: C) Do nothing. I understand markets recover and I'm in this for the long haul.
+
+**Step 6: Market Perspective**
+- Has Convictions: Yes
+- Text: "I don't want to invest in companies that harm society. No tobacco, weapons manufacturers, private prisons, or fossil fuel companies. I'd prefer ESG-screened funds where possible. I also care about climate change and would like some clean energy exposure."
+
+**Expected Portfolio Characteristics:**
+- 80% equities / 20% bonds (Growth profile)
+- ESG alternatives where possible (ESGV, ESGU, VSGX instead of VOO/VTI)
+- Clean energy tilt up to 15% (ICLN, QCLN)
+- Should explicitly acknowledge ESG preferences
+- International diversification with ESG lens
+
+
+==================================
+SCENARIO 4: PRE-RETIREMENT BALANCED
+==================================
+**Profile:** Robert, 55, operations manager planning to retire at 65
+
+**Step 1: Basics**
+- Age: 55
+- State: Florida
+
+**Step 2: Financial Foundation**
+- Emergency Fund: Yes, I have an emergency fund
+- High-Interest Debt: No high-interest debt
+
+**Step 3: Current Assets**
+Text: "I have $100,000 in a brokerage account currently in VOO, $250,000 in my 401k, $50,000 in a Roth IRA, and about $30,000 in cash across checking and savings."
+
+**Step 4: The Numbers**
+- Lump Sum: $50,000
+- Biweekly: $1,000
+
+**Step 5: Risk Profile**
+- Reaction: B) I'm nervous. I'd probably sell some of it to reduce my risk.
+
+**Step 6: Market Perspective**
+- Has Convictions: No, just build me a standard diversified portfolio
+
+**Expected Portfolio Characteristics:**
+- 60% equities / 40% bonds (Moderate profile)
+- Significant bond allocation for stability
+- Should emphasize capital preservation approaching retirement
+- Inflation protection (SCHP/TIPS)
+- Balanced US/International mix
+- Should reference 10-year timeline to retirement
+
+
+==================================
+SCENARIO 5: FIRE MOVEMENT (MAXIMUM GROWTH)
+==================================
+**Profile:** Sam, 28, FAANG engineer pursuing Financial Independence
+
+**Step 1: Basics**
+- Age: 28
+- State: Washington
+
+**Step 2: Financial Foundation**
+- Emergency Fund: Yes, I have an emergency fund
+- High-Interest Debt: No high-interest debt
+
+**Step 3: Current Assets**
+Text: "I have $50,000 in HYSA, $120,000 in my 401k maxed out every year, $35,000 in a Roth IRA, $20,000 in VOO, and $10,000 in QQQ. I'm aggressively saving to retire by 40."
+
+**Step 4: The Numbers**
+- Lump Sum: $60,000
+- Biweekly: $2,000
+
+**Step 5: Risk Profile**
+- Reaction: D) Buy more while prices are low. This is a discount!
+
+**Step 6: Market Perspective**
+- Has Convictions: Yes
+- Text: "I'm a huge believer in Google's AI capabilities and moat. Their concentration of PhD-level talent is unmatched. I'd like 5% exposure to GOOGL specifically. I'm also bullish on semiconductors for the AI wave. I want maximum growth - I have 12 years until my FIRE target."
+
+**Expected Portfolio Characteristics:**
+- 90% equities / 10% bonds (Aggressive profile)
+- 5% allocation to GOOGL (max single stock)
+- AI/semiconductor tilt up to 15%
+- Small cap value tilt (AVUV) for Fama-French factor
+- Minimal bonds given timeline
+- Should reference aggressive FIRE timeline
+
+
+==================================
+SCENARIO 6: INTERNATIONAL FOCUS
+==================================
+**Profile:** Priya, 35, economics professor
+
+**Step 1: Basics**
+- Age: 35
+- State: Massachusetts
+
+**Step 2: Financial Foundation**
+- Emergency Fund: Yes, I have an emergency fund
+- High-Interest Debt: No high-interest debt
+
+**Step 3: Current Assets**
+Text: "I have $40,000 in savings, $80,000 in my university 403b, and $15,000 in a taxable brokerage account with a mix of index funds."
+
+**Step 4: The Numbers**
+- Lump Sum: $40,000
+- Biweekly: $900
+
+**Step 5: Risk Profile**
+- Reaction: C) Do nothing. I understand markets recover and I'm in this for the long haul.
+
+**Step 6: Market Perspective**
+- Has Convictions: Yes
+- Text: "The US market has had an incredible run, but valuations are stretched. I think international markets, especially Europe and emerging markets, offer better value. I'd like heavier international exposure than typical US-centric portfolios. I'm comfortable with currency risk."
+
+**Expected Portfolio Characteristics:**
+- 80% equities / 20% bonds (Growth profile)
+- Heavier international allocation than standard (30-40% instead of 15-25%)
+- VEA, VXUS, VGK, EMXC exposure
+- Should acknowledge valuation concerns and currency risk
+- Should reference Dalio's global diversification principles
+
+
+==================================
+SCENARIO 7: CLEAN ENERGY BELIEVER
+==================================
+**Profile:** Emma, 32, environmental scientist
+
+**Step 1: Basics**
+- Age: 32
+- State: Colorado
+
+**Step 2: Financial Foundation**
+- Emergency Fund: Yes, I have an emergency fund
+- High-Interest Debt: No high-interest debt
+
+**Step 3: Current Assets**
+Text: "I have $18,000 in HYSA, $25,000 in my 401k, and about $5,000 in individual clean energy stocks (mostly solar companies)."
+
+**Step 4: The Numbers**
+- Lump Sum: $20,000
+- Biweekly: $700
+
+**Step 5: Risk Profile**
+- Reaction: C) Do nothing. I understand markets recover and I'm in this for the long haul.
+
+**Step 6: Market Perspective**
+- Has Convictions: Yes
+- Text: "I work in sustainability and truly believe clean energy is the future - solar, wind, battery storage, EV infrastructure. The climate crisis demands this transition. I want significant exposure to clean energy (10-15%) but still want a diversified core. Also prefer ESG funds for the rest."
+
+**Expected Portfolio Characteristics:**
+- 80% equities / 20% bonds (Growth profile)
+- 10-15% clean energy (ICLN, QCLN)
+- ESG core (ESGV/ESGU instead of VOO)
+- Should mention sector concentration risk
+- Should balance conviction with diversification
+- Inflation protection component
+
+
+==================================
+SCENARIO 8: INFLATION HAWK
+==================================
+**Profile:** David, 40, small business owner
+
+**Step 1: Basics**
+- Age: 40
+- State: Arizona
+
+**Step 2: Financial Foundation**
+- Emergency Fund: Yes, I have an emergency fund
+- High-Interest Debt: No high-interest debt
+
+**Step 3: Current Assets**
+Text: "I have $75,000 in business savings, $100,000 in a SEP IRA, and $20,000 in cash. I've been holding too much cash and want to protect against inflation."
+
+**Step 4: The Numbers**
+- Lump Sum: $50,000
+- Biweekly: $1,200
+
+**Step 5: Risk Profile**
+- Reaction: B) I'm nervous. I'd probably sell some of it to reduce my risk.
+
+**Step 6: Market Perspective**
+- Has Convictions: Yes
+- Text: "I'm really worried about inflation eating away at my cash. I want heavy inflation protection - TIPS, commodities, energy stocks, maybe even gold. I've seen how inflation hurts my business margins and I want hedges against it."
+
+**Expected Portfolio Characteristics:**
+- 60% equities / 40% bonds+inflation hedges (Moderate profile)
+- Heavy SCHP/TIPS allocation (15-20%)
+- Energy sector exposure (XLE) up to 10%
+- Should explicitly address inflation concerns
+- Should reference Ken Rogoff's inflation/currency framework
+- Real assets focus
+
+
+==================================
+SCENARIO 9: STANDARD DIVERSIFIED (CONTROL)
+==================================
+**Profile:** Chris, 35, middle manager at manufacturing company
+
+**Step 1: Basics**
+- Age: 35
+- State: Ohio
+
+**Step 2: Financial Foundation**
+- Emergency Fund: Yes, I have an emergency fund
+- High-Interest Debt: No high-interest debt
+
+**Step 3: Current Assets**
+Text: "I have $20,000 in savings and $60,000 in my 401k. Pretty standard situation."
+
+**Step 4: The Numbers**
+- Lump Sum: $20,000
+- Biweekly: $600
+
+**Step 5: Risk Profile**
+- Reaction: C) Do nothing. I understand markets recover and I'm in this for the long haul.
+
+**Step 6: Market Perspective**
+- Has Convictions: No, just build me a standard diversified portfolio
+
+**Expected Portfolio Characteristics:**
+- 80% equities / 20% bonds (Growth profile)
+- Classic Bogle/Swensen allocation
+- 60% US (VOO/VTI), 25% International (VEA/VXUS), 15% Small Cap Value (AVUV)
+- 15% SCHP/SGOV, 5% cash
+- No special tilts or convictions
+- **BASELINE for comparison** - this is what "standard" looks like
+
+
+==================================
+SCENARIO 10: HIGH DEBT (WARNING SYSTEM TEST)
+==================================
+**Profile:** Taylor, 28, recent grad student with debt
+
+**Step 1: Basics**
+- Age: 28
+- State: New York
+
+**Step 2: Financial Foundation**
+- Emergency Fund: No, I'm still building it
+- High-Interest Debt: Yes, I have some high-interest debt
+
+**Step 3: Current Assets**
+Text: "I have $5,000 in savings, $2,000 in a Roth IRA from when I had a job during school, and $10,000 in credit card debt at 22% APR from living expenses during my last year of grad school."
+
+**Step 4: The Numbers**
+- Lump Sum: $5,000
+- Biweekly: $400
+
+**Step 5: Risk Profile**
+- Reaction: C) Do nothing. I understand markets recover and I'm in this for the long haul.
+
+**Step 6: Market Perspective**
+- Has Convictions: No, just build me a standard diversified portfolio
+
+**Expected Portfolio Characteristics:**
+- Should trigger STRONG debt warning in Step 2
+- Portfolio should still be built assuming debt is handled separately
+- 80% equities / 20% bonds (Growth profile based on age)
+- Should emphasize paying down 22% debt is guaranteed return
+- Should mention building emergency fund first
+- This tests the advisory (not blocking) system
+
+
+==================================
+TESTING CHECKLIST
+==================================
+
+For each scenario, verify:
+
+□ Portfolio allocations sum to exactly 100%
+□ No single stock exceeds 5%
+□ No single sector exceeds 15%
+□ At least 60% in diversified broad-market ETFs
+□ Equity/bond split matches risk profile (A=40/60, B=60/40, C=80/20, D=90/10)
+□ User convictions are explicitly addressed in "Why This Portfolio Works For You"
+□ Age and timeline are referenced in strategy
+□ Tables are formatted correctly (Lump Sum, Biweekly DCA, Holdings Explained)
+□ Plain language explanations (no jargon)
+□ Expert frameworks are evident in choices (but not explicitly mentioned)
+
+**Diversity Test:**
+Compare Scenario 1, 4, and 9 side-by-side. Portfolios should be MEANINGFULLY different in:
+- Equity/bond allocation
+- Sector tilts
+- Risk level
+- Explanations
+
+If portfolios are too similar, prompt needs refinement.

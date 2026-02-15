@@ -1,0 +1,263 @@
+WEALTH ARCHITECT - PROMPT ARCHITECTURE GUIDE
+=============================================
+Created: December 28, 2025
+Updated: January 9, 2026
+Purpose: Map all prompts needed for the Wealth Architect application
+
+=============================================
+FLOW: INPUT → PROCESSING → OUTPUT
+=============================================
+
+USER INPUT SECTIONS (The "Wizard")
+----------------------------------
+Note: UI skeleton is COMPLETE as of Jan 9, 2026. See WA_app.py for implementation.
+
+| Section                  | Inputs                                              | UI Type                        | Why It's Needed                          |
+|--------------------------|-----------------------------------------------------|--------------------------------|------------------------------------------|
+| 0. Intro Page            | None (informational)                                | Static content                 | Set expectations, philosophy, disclaimer |
+| 1. Basics                | Age, State                                          | Slider, Text input             | Timeline + tax considerations            |
+| 2. Financial Foundation  | Emergency fund (Y/N), High-interest debt (Y/N)      | Radio buttons                  | Safety guardrails (advisory, not blocker)|
+| 3. Current Assets        | Free-text paste of investable assets                | Text area                      | Audit what they have, consolidation advice |
+| 4. The Numbers           | Initial lump sum, Biweekly investable income        | Text inputs with $ prefix      | Core calculation inputs                  |
+| 5. Risk Profile          | Market crash reaction (A/B/C/D)                     | Radio buttons                  | Determines equity/bond split             |
+| 6. Market Perspective    | Yes/No toggle + free-text for convictions           | Radio + conditional text area  | Sector expertise, stock picks, ESG, sentiment |
+| 7. Review & Generate     | Summary display + corrections text box              | Display + Text area            | Final confirmation before generation     |
+
+
+=============================================
+PROMPT FLOW DIAGRAM
+=============================================
+
+┌─────────────────────────────────────────────────────────────────┐
+│                        USER INPUTS                              │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  PROMPT 1: ASSET AUDITOR                                        │
+│  Input: Current assets text                                     │
+│  Output: Consolidation advice, cleaned lump sum number          │
+│  Model: Smart (Gemini 3 Pro) - handles messy text               │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  PROMPT 2: RISK TRANSLATOR                                      │
+│  Input: Age, crash reaction, investment horizon                 │
+│  Output: Risk score (0.0-1.0), equity/bond split recommendation │
+│  Model: Fast (Gemini 2.5 Flash) - deterministic logic           │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  PROMPT 3: PORTFOLIO ARCHITECT (CORE)                           │
+│  Input: Risk score, lump sum, biweekly amount, sector tilts     │
+│  Output: JSON array of tickers with allocations                 │
+│  Model: Smart (Gemini 3 Pro) - needs reasoning for selection    │
+│                                                                 │
+│  CRITICAL: Output JSON must be used for BOTH the pie chart      │
+│  AND the table. Single source of truth for allocations.         │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  PROMPT 4: PORTFOLIO EXPLAINER                                  │
+│  Input: The JSON portfolio from Prompt 3                        │
+│  Output: Narrative explanation + per-ticker rationale           │
+│  Model: Fast (Gemini 2.5 Flash) - just formatting/explaining    │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                      RENDERED OUTPUT                            │
+│  - Portfolio summary paragraph                                  │
+│  - Pie chart (ticker + percent, FROM PROMPT 3 JSON)             │
+│  - Table with all columns (FROM SAME PROMPT 3 JSON)             │
+│  - Tax/disclaimer section (static or light AI)                  │
+└─────────────────────────────────────────────────────────────────┘
+
+
+=============================================
+PROMPT 1: ASSET AUDITOR
+=============================================
+
+PURPOSE: Analyze messy asset text, flag issues, suggest consolidation
+
+INPUT VARIABLES:
+- {user_assets_text} - Raw paste from user
+- {has_emergency_fund} - Boolean
+- {has_high_interest_debt} - Boolean
+
+REQUIRED OUTPUT (JSON):
+{
+  "clean_lump_sum": 15000,
+  "toxic_debt_warning": "You have $4k at 22% APR. Paying this is a guaranteed 22% return.",
+  "consolidation_advice": "Consider selling the $2k in AMC to add to your core portfolio.",
+  "assets_to_keep": ["$10k HYSA", "$3k VOO"],
+  "assets_to_sell": ["$2k AMC", "$500 DOGE"]
+}
+
+OPTIMIZATION NEEDED:
+- Force JSON output (current prompt returns narrative)
+- Add explicit guardrails for debt/emergency fund logic
+
+
+=============================================
+PROMPT 2: RISK TRANSLATOR
+=============================================
+
+PURPOSE: Convert qualitative inputs to quantitative risk parameters
+
+INPUT VARIABLES:
+- {age}
+- {crash_reaction} - A/B/C/D
+- {investment_horizon} - "retirement_20_plus", "medium_5_10", "short_under_5"
+
+REQUIRED OUTPUT (JSON):
+{
+  "risk_score": 0.7,
+  "risk_label": "Growth",
+  "equity_allocation": 80,
+  "bond_allocation": 20,
+  "rationale": "At 32 with a 20+ year horizon and comfort holding through downturns, you can handle volatility."
+}
+
+OPTIMIZATION NEEDED:
+- This is mostly deterministic logic - could be code instead of AI
+- But AI adds the natural language rationale
+
+
+=============================================
+PROMPT 3: PORTFOLIO ARCHITECT (CORE)
+=============================================
+
+PURPOSE: Build the actual portfolio with ticker selection
+
+INPUT VARIABLES:
+- {risk_score} - From Prompt 2
+- {equity_allocation} - From Prompt 2
+- {lump_sum} - Dollar amount
+- {biweekly_income} - Dollar amount
+- {sector_tilts} - Free text from user (or null if "No tilt" selected)
+- {consolidation_context} - From Prompt 1
+
+REQUIRED OUTPUT (JSON):
+{
+  "portfolio": [
+    {
+      "ticker": "VOO",
+      "name": "Vanguard S&P 500 ETF",
+      "allocation_pct": 40,
+      "initial_buy": 6000,
+      "biweekly_buy": 200,
+      "category": "US Large Cap Core",
+      "why_included": "The backbone of any long-term portfolio. Gives you ownership of 500 largest US companies.",
+      "what_it_owns": "Apple, Microsoft, Amazon, Google, and 496 other large US companies",
+      "risk_note": "Concentrated in US large caps. If US underperforms globally, this drags."
+    }
+    // ... more tickers
+  ],
+  "alternative_tickers": {
+    "VOO": ["VTI", "SPY"],
+    "AVUV": ["VBR", "SLYV"]
+  }
+}
+
+CRITICAL REQUIREMENTS:
+- The "allocation_pct" values MUST sum to exactly 100
+- The pie chart and table BOTH render from this same JSON
+- This ensures pie chart always matches the table (single source of truth)
+- Must enforce concentration limits (5% single stock, 15% sector)
+- Must respect Bogle/Swensen/Fama-French principles
+
+OPTIMIZATION NEEDED:
+- This is where original prompt's logic lives
+- JSON output is critical for rendering tables/charts
+- Include self-audit step in prompt to verify allocations sum to 100
+
+
+=============================================
+PROMPT 4: PORTFOLIO EXPLAINER
+=============================================
+
+PURPOSE: Generate the narrative summary and detailed explanations
+
+INPUT VARIABLES:
+- {portfolio_json} - From Prompt 3
+- {user_context} - Summary of their inputs (age, goals, tilts)
+
+REQUIRED OUTPUT (Markdown):
+## Your Portfolio Strategy
+
+This portfolio is built for long-term wealth accumulation with a Growth risk profile...
+
+[2-3 paragraph explanation of the overall strategy, why this mix, how it reflects their inputs]
+
+## Alternative Considerations
+
+If you prefer Fidelity funds, you could swap VOO for FXAIX...
+
+OPTIMIZATION NEEDED:
+- Keep it concise but educational
+- Reference their specific inputs ("Given your interest in AI...")
+
+
+=============================================
+STATIC CONTENT: TAX & DISCLAIMER SECTION
+=============================================
+
+This doesn't need a full AI call. Should include:
+
+TAX GUIDANCE:
+- Long-term vs short-term capital gains (hold 1+ year for lower rates)
+- Brief mention of wash sale rules
+- Tax-advantaged accounts (401k, IRA) vs taxable brokerage
+- State-specific notes if applicable
+
+DISCLAIMER:
+- "This is educational content, not investment or tax advice"
+- "Past performance does not guarantee future results"
+- "Consult a licensed financial advisor or CPA for personalized advice"
+- "Invest at your own risk"
+
+Keep it clean and professional - not scary, but clear.
+
+
+=============================================
+SUMMARY: WHAT TO BUILD
+=============================================
+
+| Prompt             | Current State              | Needed Work                                    |
+|--------------------|----------------------------|------------------------------------------------|
+| Asset Auditor      | Exists but returns narrative | Force JSON output, add debt/emergency logic   |
+| Risk Translator    | Exists but returns narrative | Force JSON output with numeric score          |
+| Portfolio Architect | Buried in monolithic prompt | Extract, make it return structured JSON       |
+| Portfolio Explainer | Mixed into final plan      | Separate prompt, takes JSON input             |
+| Tax/Disclaimer     | Doesn't exist              | Add static content or light prompt            |
+
+
+=============================================
+UI NOTES (UPDATED JAN 9, 2026)
+=============================================
+
+MARKET PERSPECTIVE INPUT (formerly "Sector Tilt"):
+- Radio button: "Do you have any market convictions or preferences to share?"
+  - "No, just build me a standard diversified portfolio" → Skips text area
+  - "Yes, I have some thoughts I'd like to share" → Shows text area + examples expander
+
+- Examples provided in expander:
+  1. Sector expertise: "I work in AI and am bullish on semiconductors..."
+  2. Individual stock conviction: "I believe in Google because of their PhD talent..."
+  3. Ethical/ESG preferences: "No sin stocks - tobacco, weapons, private prisons..."
+  4. Market sentiment: "I think tech is overvalued, prefer defensive allocation..."
+
+PIE CHART REQUIREMENT:
+- Shows: Ticker + Percentage
+- Data source: MUST come from Prompt 3 JSON "allocation_pct" field
+- Single source of truth with the table
+- Add validation in code: sum of allocation_pct must equal 100 before rendering
+
+NON-RETIREMENT FOCUS:
+- This tool is for taxable brokerage accounts, not 401(k)/IRA
+- Intro page and Step 3/4 clarify this
+- Retirement guidance is educational only (in final report)

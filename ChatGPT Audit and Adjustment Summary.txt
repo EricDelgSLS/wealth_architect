@@ -1,0 +1,75 @@
+Quick summary — what we decided and why
+
+Purpose: make the Wealth Architect conservative by default but smarter and more practical for aggressive / conviction-driven users. Add DCA guidance, keep the simple crash-reaction risk input (A/B/C/D) as the single source of truth, and make the output auditable and easy for users to understand.
+
+Big user-facing changes (non-technical)
+
+DCA always shown when a large lump sum is detected (default threshold = $10k). The app will show a simple, recommended DCA schedule plus a one-sentence explanation of the tradeoffs (sequencing/timing risk vs potential missed upside). Users can still choose “deploy all now” but it’s not preselected.
+
+Risk remains the simple A/B/C/D question (reaction to a 30% market drop). We use that single answer to set the portfolio risk level — no extra risk slider or complex inputs for most users.
+
+For users who pick “do nothing” or “buy more” (C or D), the system will automatically shift the portfolio slightly to allow a bigger thematic/sector (satellite) allocation. No extra override button required — simplicity preserved.
+
+The convictions free-text box remains on the same page; the model will use it as a hint to allocate satellites (e.g., tech/AI) but won’t force the user to explicitly manage sector caps.
+
+How risk → allocation now maps (simple, user-facing)
+
+We keep your A/B/C/D mapping as the UI truth:
+
+A (sell everything) → Conservative → 40% equities / 60% bonds+cash
+
+B (sell some) → Moderate → 60% equities / 40% bonds+cash
+
+C (do nothing) → Growth → 80% equities / 20% bonds+cash
+
+D (buy more) → Aggressive → 90% equities / 10% bonds+cash
+
+Internally we then split equities into Core vs Satellite so C/D users get more satellite/sector exposure while maintaining a core. This is automatic and invisible to the user (keeps the wizard clean but produces outcomes that match the user’s temperament).
+
+Guardrails (what stays protective)
+
+Single-stock cap remains (default 5% of portfolio).
+
+Sector cap enforced (default 15% per sector).
+
+Core minimums enforced so most users still have a diversified base.
+Those safeguards remain — we only relax the satellite share modestly for C/D users.
+
+Prompt & output audits (why this matters)
+
+Outputs are required to include a short human summary plus a strict machine-readable JSON with:
+
+portfolio holdings, allocations, and amounts
+
+dca_plan with installment amounts and schedule when applicable
+
+guardrails and self_audit (sum==100, guardrail_violations flag)
+This makes results auditable, easier to validate, and safer to show in the UI.
+
+Small UX copy and display changes
+
+Show a short DCA line: “We recommend DCA for lump sums over $10k. Recommended: 4 weekly buys for $10–50k. You can choose to deploy all now — see tradeoffs.”
+
+When guardrails are relaxed for C/D: show a one-line rationale so users understand tradeoffs: “You chose ‘do nothing’/’buy more’, so we slightly increased thematic exposure while keeping a diversified core.”
+
+Keep the convictions text box; use it to bias satellite picks (QQQ, SMH etc.) when sensible.
+
+Testing & QA (what to check)
+
+Scenario tests: aggressive user → satellite grows & QQQ appears; conservative user → bonds and core remain large.
+
+Verify dca_plan appears for large lump sums and installment math is correct.
+
+Validate self_audit.sum == 100 and guardrail_violations == false before UI rendering.
+
+Next practical steps (short)
+
+Implement DCA block in backend and UI display (dca_plan + explanatory copy).
+
+Use A/B/C/D as the risk input and map to Core/Satellite internally (no new UI required).
+
+Enforce JSON schema and server-side validation of guardrails.
+
+Add the three QA tests (aggressive, conservative, lump-sum) to the test harness.
+
+Iterate wording in the UI to ensure the DCA and guardrail rationale are clear and reassuring.
