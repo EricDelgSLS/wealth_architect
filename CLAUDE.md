@@ -12,18 +12,27 @@ Create a shareable frontend where users input their financial details and receiv
 
 ---
 
-## Current State (as of January 17, 2026)
+## Current State (as of March 14, 2026)
+
+### App Status
+- **LIVE** at https://the-portfolio-pilot.streamlit.app/
+- GitHub repo: `EricDelgSLS/wealth_architect` (public)
+- Auto-deploys on push to `main` branch
+- API key stored in Streamlit Cloud secrets
 
 ### Files in Project
-- `WA_backend.py` - Backend with Gemini API calls + **optimized Portfolio Architect prompt**
+- `WA_backend.py` - Backend with Gemini API calls + **optimized Portfolio Architect prompt (v3)**
 - `WA_app.py` - Streamlit frontend with sequential 7-step wizard + intro + report pages + **browser print button**
 - `requirements.txt` - Dependencies (streamlit, google-generativeai, plotly, pandas, python-dotenv)
+- `AGENTS.md` - Context file for Codex (points to CLAUDE.md)
+- `CLAUDE.md` - This file (project context)
 - `AI Investing Prompt Chain Gemini.txt` - Original monolithic prompt chain (north star for output format)
 - `Prompt_References.md` - Reference prompts for building optimized Portfolio Architect prompt
 - `Project_ The _Wealth Architect_ Application.txt` - PRD/guide document
 - `PROMPT_ARCHITECTURE.txt` - Detailed prompt mapping guide
-- `PROMPT_ARCHIVE_v1.txt` - **NEW** Archive of all prompts (v1 = January 17, 2026 baseline)
-- `CLAUDE.md` - This file (project context)
+- `PROMPT_ARCHIVE_v1.txt` - Archive of all prompts (v1 = January 17, 2026 baseline)
+- `PROMPT_ARCHIVE_v2.txt` - Archive (v2 = January 18, 2026 — Core/Satellite, DCA strategy)
+- `Claude_Code_Prompt_WA_Update.md` - Post-feedback update notes from user
 
 ### What's Working ✅
 - **Sequential 7-step wizard flow** (no more confusing tabs)
@@ -44,16 +53,23 @@ Create a shareable frontend where users input their financial details and receiv
 - **Browser print button** - Users can save report as PDF using browser's native print-to-PDF
 - **Privacy statement** - Clear disclosure on intro page that data is session-only, not stored
 
-### What's Still Needed (Pre-Launch)
-- [ ] Test app end-to-end with real inputs
-- [ ] Consider optimizing remaining prompts (Asset Auditor, Risk Translator) based on test results
-- [ ] Cloud deployment (Streamlit Cloud)
+### Completed Milestones
+- [x] App deployed to Streamlit Cloud (March 2026)
+- [x] Tested with 4 real users (Enrik, Ron, Birdy, Eric)
+- [x] Portfolio Architect prompt v3 with dividend info + overlap guardrails
+- [x] Print button cleaned up
+
+### In Progress
+- [ ] **UI/UX Theme** — Choose palette (Emerald Green, Sky Blue, or Green+Gold), implement config.toml
+- [ ] **PROMPT_ARCHIVE_v3.txt** — Archive current prompts after v3 changes
+- [ ] Commit + push v3 changes to deploy
 
 ### Post-Launch Features (Nice to Have)
 - [ ] Pie chart visualization (Plotly imported but not yet rendering)
 - [ ] Structured JSON output from portfolio prompt (for chart/table sync)
-- [ ] Custom theming/branding
 - [ ] Mobile responsiveness improvements
+- [ ] Historical backtesting tool (separate script — needs Yahoo Finance/Alpha Vantage API)
+- [ ] Automated prompt quality testing (20+ scenarios, scored by AI)
 
 ---
 
@@ -93,26 +109,28 @@ See `PROMPT_ARCHITECTURE.txt` for full specifications and JSON schemas.
 - ✅ Removed fpdf2 dependency (was too fragile, failed after 4 fix attempts)
 - ✅ Added privacy statement to intro page
 
-### Phase 3: Testing & Optimization (CURRENT PRIORITY)
-- [ ] Test app end-to-end with real user inputs
-- [ ] Test PDF download with real portfolio outputs
-- [ ] Based on testing, optimize remaining prompts:
-  - [ ] Asset Auditor (if consolidation advice feels weak)
-  - [ ] Risk Translator (if behavioral analysis feels generic)
-- [ ] Fix any bugs discovered during testing
+### Phase 3: Testing & Optimization ✅ COMPLETE
+- ✅ Tested with 4 real users
+- ✅ Iterated on prompt based on feedback (v3: dividends, overlap guardrails)
+- ✅ Cleaned up save/print UX
 
-### Phase 4: Deployment (NEXT)
-- [ ] Deploy to Streamlit Cloud
-- [ ] Test shareable link
-- [ ] Get feedback from friends/family
-- [ ] Iterate based on user feedback
+### Phase 4: Deployment ✅ COMPLETE
+- ✅ Deployed to Streamlit Cloud at https://the-portfolio-pilot.streamlit.app/
+- ✅ Tested shareable link
+- ✅ Got feedback from friends/family (Enrik, Ron, Birdy)
 
-### Phase 5: Post-Launch Enhancements (Nice to Have)
+### Phase 5: Polish & Theming (CURRENT)
+- [ ] Choose and implement UI theme (dark mode + green/blue/gold accents)
+- [ ] Create PROMPT_ARCHIVE_v3.txt
+- [ ] Commit + push v3 changes
+- [ ] Test live app with dividend output
+
+### Phase 6: Future Enhancements (Nice to Have)
 - [ ] Add Plotly pie chart visualization
 - [ ] Consider JSON output from Portfolio Architect for easier parsing
-- [ ] Custom theming/branding
+- [ ] Historical backtesting tool (separate script)
+- [ ] Automated prompt quality testing (20+ scenarios)
 - [ ] Mobile responsiveness improvements
-- [ ] Error handling improvements
 
 ---
 
@@ -128,7 +146,7 @@ See `PROMPT_ARCHITECTURE.txt` for full specifications and JSON schemas.
    - The new file should contain ALL current prompts (not just the changed one)
    - Include a VERSION HISTORY section at the bottom noting what changed
    - This allows easy reference to previous versions and rollback if needed
-   - Current version: `PROMPT_ARCHIVE_v1.txt` (January 17, 2026 baseline)
+   - Current version: `PROMPT_ARCHIVE_v3.txt` (March 14, 2026 — dividends + overlap guardrail)
 
 4. **Market Perspective Section**: Expanded beyond "sector tilt" to capture:
    - Sector expertise (work-related knowledge)
@@ -280,7 +298,38 @@ See `PROMPT_ARCHITECTURE.txt` for full specifications and JSON schemas.
 - New branding: Airplane icon (✈️) + tagline "Your AI co-pilot for building a smarter portfolio"
 - Ready to commit and push to GitHub
 
-**Next Session**: Deploy to Streamlit Cloud.
+**March 10, 2026 - Deployment to Streamlit Cloud**:
+- ✅ **Deployed app to Streamlit Cloud** at https://the-portfolio-pilot.streamlit.app/
+- Encountered private repo access issue — Streamlit has OAuth but not GitHub App access
+- ✅ **Updated .gitignore** to exclude documentation files before making repo public:
+  - CLAUDE.md, PROMPT_ARCHIVE_*.txt, PROMPT_ARCHITECTURE.txt, Prompt_References.md
+  - TEST_SCENARIOS.txt, ChatGPT*.txt, wealth_architect_claude_guide*.md, Project_*.txt
+- Made repo temporarily public for Streamlit Cloud access
+- Added GOOGLE_API_KEY to Streamlit secrets (TOML format, quotes required)
+- App successfully deployed and functional
+
+**March 14, 2026 - Post-Feedback Updates (v3 Prompt)**:
+- Collected feedback from 4 testers: Enrik, Ron, Birdy, Eric
+- ✅ **Added Dividend/Yield Info column** to Holdings Explained table in Portfolio Architect prompt
+  - Only populated for income-producing holdings (bond ETFs, SGOV, dividend ETFs)
+  - Growth-focused holdings show "N/A — growth-focused"
+  - Added beginner-friendly paragraph explaining dividends, DRIP, reinvestment
+  - Updated self-audit checklist to verify dividend info included
+- ✅ **Added VTI/VEA overlap guardrail** — prompt now prevents recommending both VXUS and VEA together
+  - VTI (US-only) and VEA (international developed) have NO overlap — Enrik's concern was unfounded
+  - But VXUS includes VEA's territory, so triple-stacking was a valid risk
+- ✅ **Cleaned up print/save button** — removed clunky platform instructions, simplified to button + one-line caption
+- **UI/UX Theme Design** — researched Streamlit theming capabilities:
+  - `.streamlit/config.toml` supports: primaryColor, backgroundColor, secondaryBackgroundColor, textColor, borderColor, linkColor, font, baseRadius
+  - CSS injection via `st.markdown(unsafe_allow_html=True)` for advanced styling (fragile across versions)
+  - Three palette options proposed: Emerald Money (green), Sky Blue Aviation (blue), Green+Gold Hybrid
+  - All share dark background (#0F172A) — user testing on Canva before choosing
+- **Codex integration planned** — Claude Code as lead developer, Codex as junior for execution
+  - Created AGENTS.md for Codex project context
+- **Deferred items**: AI double-read (skip), wild portfolio (skip), mobile (defer), backtesting (future), automated testing (future)
+- **Development workflow confirmed**: Local testing via `streamlit run WA_app.py` runs independently from live cloud app. Push to GitHub auto-deploys.
+
+**Next Session**: Choose theme palette, implement config.toml, create PROMPT_ARCHIVE_v3.txt, commit + push + test live.
 
 ---
 
@@ -617,22 +666,25 @@ This caps usage at 50 portfolios/day (~$1-2/day max cost).
 
 ## Quick Reference: Output Structure
 
-The final report should include these sections (from north star + current prompt v2):
+The final report should include these sections (from north star + current prompt v3):
 
 1. **PORTFOLIO STRATEGY SUMMARY** - 2-3 paragraphs explaining overall strategy
 2. **INITIAL LUMP SUM DEPLOYMENT** - Table: Ticker | Name | Asset Class | Allocation % | $ Amount
 3. **LUMP SUM DEPLOYMENT STRATEGY** - *(Only if lump sum >= $10k)* Weekly schedule + DCA explanation + tradeoffs
 4. **BIWEEKLY DCA PLAN** - Table: Ticker | Name | Allocation % | $ Per Paycheck
-5. **YOUR HOLDINGS EXPLAINED** - Table: Ticker | What It Owns | Why It's In Your Portfolio
+5. **YOUR HOLDINGS EXPLAINED** - Table: Ticker | What It Owns | Why It's In Your Portfolio | Dividend/Yield Info
+   - Dividend column only populated for income-producing holdings; "N/A — growth-focused" for others
+   - Followed by beginner-friendly paragraph explaining dividends and DRIP
 6. **WHY THIS PORTFOLIO WORKS FOR YOU** - 4-6 personalized bullet points
 7. **IMPLEMENTATION TIPS** - Plain-language automation, quarterly check-ins, keep it simple
 
-**Guardrails (v2 - Risk-Adjusted):**
+**Guardrails (v3 - Risk-Adjusted):**
 - No single stock > 5% of total portfolio (non-negotiable)
 - Sector cap: 15% default, flexes to 20% for C/D users with conviction
 - Core requirement: A/B need 65%, C/D need 55% in broad-market ETFs
 - Satellite cap: A/B max 20%, C/D may reach 30-35%
 - Allocation percentages must sum to exactly 100%
+- VXUS and VEA must not both appear in the same portfolio (overlap)
 
 **Core/Satellite Split (within equities):**
 - A/B users: 80% Core / 20% Satellite

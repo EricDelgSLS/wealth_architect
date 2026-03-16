@@ -613,17 +613,9 @@ elif step == TOTAL_STEPS + 1:
 
     st.markdown("---")
 
-    # Save/Print Instructions
+    # Save/Print
     if ud['final_report']:
-        st.markdown("""
-        **Save Your Report:**
-        To save this report as a PDF, use your browser's print function:
-        - **Windows/Chrome:** Press `Ctrl+P` → Select "Save as PDF" as the destination
-        - **Mac/Safari:** Press `Cmd+P` → Click "PDF" dropdown → "Save as PDF"
-        - **Mobile:** Use your browser's share menu → "Print" → "Save as PDF"
-        """)
-
-        # Print button using components.html (executes JS properly)
+        st.caption("Save your report as a PDF using your browser's print dialog.")
         components.html("""
             <button onclick="window.top.print()" style="
                 background-color: #FF4B4B;
@@ -634,7 +626,7 @@ elif step == TOTAL_STEPS + 1:
                 font-size: 1rem;
                 cursor: pointer;
                 font-weight: 500;
-            ">🖨️ Print / Save as PDF</button>
+            ">🖨️ Save as PDF</button>
         """, height=50)
 
     # TODO: Once backend returns JSON, render pie chart and tables here

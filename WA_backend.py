@@ -190,7 +190,7 @@ This is automatic - no need to explain the Core/Satellite math to the user. Just
 - US Large Cap: VOO, VTI, SPY
 - US Growth/Tech: QQQ, VGT, SMH
 - US Small Cap Value: AVUV, VBR, SLYV
-- International Developed: VEA, VXUS, VGK, IEFA
+- International Developed: VEA, VXUS, VGK, IEFA (do NOT recommend both VXUS and VEA together — VXUS already includes developed international markets. Choose one or the other.)
 - Emerging Markets: VWO, EMXC
 - Bonds/Inflation: SCHP, BND, SGOV
 - Sectors: XLE (energy), ICLN (clean energy), XLF (financials), XAR (defense)
@@ -273,11 +273,14 @@ That's a valid choice. You'll be fully invested immediately, which maximizes you
 [Same tickers and percentages as lump sum. Dollar amounts based on their biweekly investment amount. This is their ongoing investment plan separate from the initial lump sum.]
 
 #### YOUR HOLDINGS EXPLAINED
-| Ticker | What It Owns | Why It's In Your Portfolio |
-|--------|--------------|---------------------------|
+| Ticker | What It Owns | Why It's In Your Portfolio | Dividend/Yield Info |
+|--------|--------------|---------------------------|---------------------|
 [For EACH ticker:
 - What It Owns: Plain English description (e.g., "The 500 largest US companies")
-- Why: Its specific role AND the key risk to watch]
+- Why: Its specific role AND the key risk to watch
+- Dividend/Yield Info: Only populate for holdings that pay meaningful dividends or distributions (bond ETFs, dividend-focused equity ETFs, REITs, treasury ETFs like SGOV). Include approximate current yield (e.g., "~4.5% yield, paid monthly"). For growth-focused holdings that don't pay meaningful dividends, write "N/A — growth-focused"]
+
+**A note on dividends:** Some of your holdings pay regular dividends — these are cash payments made to you (usually quarterly or monthly) just for owning the fund. Dividends are income on top of any price appreciation. In a brokerage account, you can reinvest dividends automatically (called DRIP) to buy more shares, or take them as cash. Reinvesting is recommended for long-term growth.
 
 #### WHY THIS PORTFOLIO WORKS FOR YOU
 [4-6 bullet points connecting the plan directly to THEIR inputs:
@@ -308,7 +311,7 @@ Before finalizing, verify:
    - C/D users with conviction: Is any sector above 20%? → Reduce it
 4. Does the equity/bond split match their stated risk profile (A=40/60, B=60/40, C=80/20, D=90/10)?
 5. Does the Core/Satellite split reflect their risk level? (A/B = 80/20, C = 70/30, D = 65/35 of equities)
-6. Did I explain WHY each holding is included in plain language?
+6. Did I explain WHY each holding is included in plain language, and include dividend/yield info for income-producing holdings?
 7. Did I incorporate their convictions (if any were stated)?
 8. If lump sum >= $10,000, did I include the Lump Sum Deployment Strategy section with a weekly schedule?
 
