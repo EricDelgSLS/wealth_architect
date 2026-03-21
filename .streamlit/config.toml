@@ -1,0 +1,27 @@
+[theme]
+# Vivid Azure theme
+primaryColor = "#0ea5e9"
+
+# Deep Space Background (Main content area)
+backgroundColor = "#131314"
+
+# Cockpit Panel Gray (Sidebar and input boxes)
+secondaryBackgroundColor = "#1E1F20"
+
+# Crisp readability (Off-white to reduce eye strain)
+textColor = "#E3E3E3"
+
+# Metallic borders
+borderColor = "#3E3E42"
+
+# Links match primary
+linkColor = "#0ea5e9"
+
+# Terminal-style code blocks
+codeBackgroundColor = "#0E0E0E"
+codeTextColor = "#C4E7FF"
+
+# Typography & Layout
+font = "sans serif"
+baseFontSize = 16
+baseRadius = "1.0rem"

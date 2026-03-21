@@ -9,9 +9,27 @@ import pandas as pd
 # 1. Page Configuration
 st.set_page_config(
     page_title="The Portfolio Pilot",
-    page_icon="✈️",
+    page_icon="portfolio_pilot_favicon.png",
     layout="centered"
 )
+
+# --- CUSTOM CSS: Vivid Azure button styling ---
+st.markdown("""
+    <style>
+    .stButton>button {
+        background-color: #0ea5e9 !important;
+        color: #FFFFFF !important;
+        border-radius: 12px !important;
+        border: 1px solid #38bdf8 !important;
+        font-weight: 600;
+        box-shadow: 0 0 15px rgba(14, 165, 233, 0.3);
+    }
+    .stButton>button:hover {
+        box-shadow: 0 0 25px rgba(14, 165, 233, 0.5);
+        border: 1px solid #FFFFFF !important;
+    }
+    </style>
+    """, unsafe_allow_html=True)
 
 # --- SESSION STATE INITIALIZATION ---
 if 'current_step' not in st.session_state:
@@ -61,8 +79,12 @@ def render_progress():
         st.markdown("---")
 
 # --- HEADER ---
-st.title("✈️ The Portfolio Pilot")
-st.markdown("*Your AI co-pilot for building a smarter portfolio.*")
+col_logo, col_title = st.columns([1, 6])
+with col_logo:
+    st.image("Portfolio_Pilot_Logo.png", width=80)
+with col_title:
+    st.title("The Portfolio Pilot")
+    st.markdown("*Your AI co-pilot for building a smarter portfolio.*")
 
 # --- STEP RENDERING ---
 step = st.session_state['current_step']
@@ -96,11 +118,22 @@ if step == 0:
     growing while you sleep.
     """)
 
-    st.info("""
-    **The Goal:** Build a balanced portfolio that, over the long haul, should outperform
-    letting your money sit in a savings account or even a basic S&P 500 fund - with
-    diversification that helps you weather the storms.
-    """)
+    st.markdown("""
+<div style="
+    border-left: 4px solid #0ea5e9;
+    background-color: #1a1b1c;
+    padding: 1.25rem 1.5rem;
+    border-radius: 0 8px 8px 0;
+    margin: 1rem 0;
+">
+    <strong style="font-size: 1.1rem;">The Goal</strong><br><br>
+    Build a personalized portfolio guided by AI that's been carefully tuned
+    to follow proven investment principles — from Bogle's index philosophy to
+    modern portfolio theory. You won't just get a list of tickers. You'll
+    understand <em>why</em> each holding is in your portfolio, so you can invest with
+    confidence.
+</div>
+""", unsafe_allow_html=True)
 
     st.markdown("""
     ### How to Get the Most Out of This
@@ -115,14 +148,14 @@ if step == 0:
 
     st.markdown("---")
 
-    st.info("""
-    **Your Privacy:**
-    - Your data is **not stored** - it only exists during this session
-    - Your inputs are processed by AI using curated investment prompts
-    - The developer of this tool **cannot see your inputs**
-    - When you close this page, your data is gone
-    - No account, no tracking, no database
-    """)
+    with st.container(border=True):
+        st.markdown("""**Your Privacy**
+
+- Your data is **not stored** - it only exists during this session
+- Your inputs are processed by AI using curated investment prompts
+- The developer of this tool **cannot see your inputs**
+- When you close this page, your data is gone
+- No account, no tracking, no database""")
 
     st.warning("""
     **Disclaimer:** This is not investment advice. Invest at your own risk.
@@ -571,7 +604,7 @@ elif step == 7:
             prev_step()
             st.rerun()
     with col2:
-        if st.button("Generate My Portfolio 🚀", type="primary", key="step7_generate"):
+        if st.button("Generate My Portfolio", type="primary", key="step7_generate"):
             with st.spinner("Building your personalized portfolio... This may take a moment."):
                 # Compile all user data and generate final report
                 final_report = backend.generate_final_plan(
@@ -587,19 +620,6 @@ elif step == 7:
 # FINAL REPORT PAGE
 # ==========================================
 elif step == TOTAL_STEPS + 1:
-    # Force scroll to top of page
-    st.markdown('<div id="top"></div>', unsafe_allow_html=True)
-    st.markdown(
-        """
-        <style>
-        /* Scroll to top on page load */
-        </style>
-        <script>
-        window.scrollTo(0, 0);
-        </script>
-        """,
-        unsafe_allow_html=True
-    )
 
     st.header("Your Portfolio Pilot Report")
 
@@ -618,14 +638,17 @@ elif step == TOTAL_STEPS + 1:
         st.caption("Save your report as a PDF using your browser's print dialog.")
         components.html("""
             <button onclick="window.top.print()" style="
-                background-color: #FF4B4B;
-                color: white;
+                background-color: #0ea5e9;
+                color: #FFFFFF;
                 padding: 0.5rem 1rem;
-                border: none;
-                border-radius: 0.5rem;
+                border: 1px solid #38bdf8;
+                border-radius: 12px;
                 font-size: 1rem;
+                font-family: 'Source Sans Pro', sans-serif;
                 cursor: pointer;
-                font-weight: 500;
+                font-weight: 600;
+                box-shadow: 0 0 15px rgba(14, 165, 233, 0.3);
+                letter-spacing: 0.02em;
             ">🖨️ Save as PDF</button>
         """, height=50)
 

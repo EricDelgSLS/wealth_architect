@@ -134,6 +134,30 @@ See `PROMPT_ARCHITECTURE.txt` for full specifications and JSON schemas.
 
 ---
 
+## CSS Maintenance Notes
+
+The app uses minimal CSS injection for button styling (vivid azure glow effect). This is fragile and may break on Streamlit updates.
+
+**What's injected:**
+- `.stButton>button` selector — styles ALL Streamlit buttons with vivid azure background, white text, glow effect
+- Hover state intensifies the glow
+- Injected once at top of `WA_app.py` via `st.markdown(unsafe_allow_html=True)`
+
+**The print button** (`components.html` iframe) uses separate inline styles — CSS injection doesn't reach it. If button styles change, update BOTH locations:
+1. CSS block near top of `WA_app.py` (~line 16)
+2. Print button inline styles in `components.html()` (~line 641)
+
+**If buttons break after a Streamlit update:**
+1. Check if `.stButton>button` class name changed — inspect element in browser
+2. Update the CSS selector to match the new class name
+3. Test locally before pushing
+
+**Color reference:**
+- Button BG: `#0ea5e9` | Text: `#FFFFFF` | Border: `#38bdf8`
+- Glow: `rgba(14, 165, 233, 0.3)` normal, hover `rgba(14, 165, 233, 0.5)`
+
+---
+
 ## Key Design Decisions
 
 1. **Non-Retirement Focus**: This tool builds portfolios for taxable brokerage accounts, not 401(k)/IRA. Retirement guidance is educational only.
@@ -329,7 +353,13 @@ See `PROMPT_ARCHITECTURE.txt` for full specifications and JSON schemas.
 - **Deferred items**: AI double-read (skip), wild portfolio (skip), mobile (defer), backtesting (future), automated testing (future)
 - **Development workflow confirmed**: Local testing via `streamlit run WA_app.py` runs independently from live cloud app. Push to GitHub auto-deploys.
 
-**Next Session**: Choose theme palette, implement config.toml, create PROMPT_ARCHIVE_v3.txt, commit + push + test live.
+**What's left from this session:**
+- [ ] Choose theme palette (user testing options on Canva) → then implement `.streamlit/config.toml`
+- [ ] Commit + push all v3 changes (WA_backend.py, WA_app.py, .gitignore) to deploy to live app
+- [ ] Test live app: verify dividend column output, print button cleanup, theme
+- [ ] Set up Codex agent in VS Code alongside Claude Code
+
+**Next Session**: Implement chosen theme, commit + push v3, test live, onboard Codex.
 
 ---
 
